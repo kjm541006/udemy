@@ -4,7 +4,6 @@ import Card from "../UI/Card";
 import "./Expenses.css";
 
 export default function Expenses(props) {
-  console.log(props.data);
   return (
     <Card className="expenses">
       <ExpenseItem

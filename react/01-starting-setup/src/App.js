@@ -29,8 +29,8 @@ function App() {
     setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
-    console.log(expense);
   };
+  console.log(expenses);
 
   return (
     <div>

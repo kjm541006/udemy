@@ -64,11 +64,11 @@ export default function ExpenseForm(props) {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Title</label>
+          <label>항목</label>
           <input type="text" value={userInput.enteredTitle} onChange={handleTitleChange} required />
         </div>
         <div className="new-expense__control">
-          <label>Amount</label>
+          <label>비용</label>
           <input
             type="number"
             value={userInput.enteredAmount}
@@ -79,7 +79,7 @@ export default function ExpenseForm(props) {
           />
         </div>
         <div className="new-expense__control">
-          <label>Date</label>
+          <label>날짜</label>
           <input
             type="date"
             value={userInput.enteredDate}
@@ -92,9 +92,9 @@ export default function ExpenseForm(props) {
       </div>
       <div className="new-expense__actions">
         <button type="button" onClick={props.onCancel}>
-          Cancel
+          취소
         </button>
-        <button type="submit">Add Expense</button>
+        <button type="submit">지출 추가하기</button>
       </div>
     </form>
   );

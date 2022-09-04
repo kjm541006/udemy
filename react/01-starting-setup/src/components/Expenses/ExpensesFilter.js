@@ -10,7 +10,7 @@ const ExpensesFilter = (props) => {
   return (
     <div className="expenses-filter">
       <div className="expenses-filter__control">
-        <label>Filter by year</label>
+        <label>연도별 정렬</label>
         <select value={props.selectedYear} onChange={handleYear}>
           <option value="2022">2022</option>
           <option value="2021">2021</option>

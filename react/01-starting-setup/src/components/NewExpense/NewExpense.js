@@ -23,7 +23,7 @@ export default function NewExpense(props) {
 
   return (
     <div className="new-expense">
-      {!isEditing && <button onClick={startEditingHandler}>Add new expense</button>}
+      {!isEditing && <button onClick={startEditingHandler}>새로운 지출 추가하기</button>}
       {isEditing && (
         <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler} />
       )}

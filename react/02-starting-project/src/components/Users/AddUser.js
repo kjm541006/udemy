@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../UI/Card";
+import Button from "../UI/Button";
 
 import styles from "./AddUser.module.css";
 
@@ -15,7 +16,7 @@ export default function AddUser(props) {
         <input id="username" type="text" name="username"></input>
         <label htmlFor="age">나이 (만)</label>
         <input id="age" type="number" name="age"></input>
-        <button type="submit">사용자 추가</button>
+        <Button type="submit">사용자 추가</Button>
       </form>
     </Card>
   );

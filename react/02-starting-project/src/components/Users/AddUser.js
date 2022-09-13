@@ -8,13 +8,22 @@ import styles from "./AddUser.module.css";
 export default function AddUser(props) {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [error, setError] = useState();
 
   const addUserHandler = (e) => {
     e.preventDefault();
     if (enteredAge.trim().length === 0 || enteredUsername.trim().length === 0) {
+      setError({
+        title: "유효하지 않은 입력값입니다",
+        message: "사용자 이름과 나이를 정확히 입력해주세요.",
+      });
       return;
     }
     if (+enteredAge < 1) {
+      setError({
+        title: "유효하지 않은 나이입니다",
+        message: "나이는 1부터 입력 가능합니다.",
+      });
       return;
     }
     console.log(enteredUsername, enteredAge);
@@ -31,9 +40,13 @@ export default function AddUser(props) {
     setEnteredAge(e.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
     <div>
-      <ErrorModal title="에러 발생" message="문제가 발생했습니다." />
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card className={styles.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">사용자 이름</label>

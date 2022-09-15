@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useRef } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
@@ -7,13 +7,18 @@ import ErrorModal from "../UI/ErrorModal";
 import styles from "./AddUser.module.css";
 
 export default function AddUser(props) {
-  const [enteredUsername, setEnteredUsername] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
+  // const [enteredUsername, setEnteredUsername] = useState("");
+  // const [enteredUserAge, setEnteredUserAge] = useState("");
   const [error, setError] = useState();
 
   const addUserHandler = (e) => {
     e.preventDefault();
-    if (enteredAge.trim().length === 0 || enteredUsername.trim().length === 0) {
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+    if (enteredAge.trim().length === 0 || enteredName.trim().length === 0) {
       setError({
         title: "유효하지 않은 입력값입니다",
         message: "사용자 이름과 나이를 정확히 입력해주세요.",
@@ -27,19 +32,21 @@ export default function AddUser(props) {
       });
       return;
     }
-    console.log(enteredUsername, enteredAge);
-    props.onAddUser(enteredUsername, enteredAge);
-    setEnteredUsername("");
-    setEnteredAge("");
+    console.log(enteredName, enteredAge);
+    props.onAddUser(enteredName, enteredAge);
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
+    // setEnteredUsername("");
+    // setEnteredUserAge("");
   };
 
-  const usernameChangeHandler = (e) => {
-    setEnteredUsername(e.target.value);
-  };
+  // const usernameChangeHandler = (e) => {
+  //   setEnteredUsername(e.target.value);
+  // };
 
-  const ageChangeHandler = (e) => {
-    setEnteredAge(e.target.value);
-  };
+  // const ageChangeHandler = (e) => {
+  //   setEnteredUserAge(e.target.value);
+  // };
 
   const errorHandler = () => {
     setError(null);
@@ -55,16 +62,18 @@ export default function AddUser(props) {
             id="username"
             type="text"
             name="username"
-            onChange={usernameChangeHandler}
-            value={enteredUsername}
+            // onChange={usernameChangeHandler}
+            // value={enteredUsername}
+            ref={nameInputRef}
           ></input>
           <label htmlFor="age">나이 (만)</label>
           <input
             id="age"
             type="number"
             name="age"
-            onChange={ageChangeHandler}
-            value={enteredAge}
+            // onChange={ageChangeHandler}
+            // value={enteredUserAge}
+            ref={ageInputRef}
           ></input>
           <Button type="submit">사용자 추가</Button>
         </form>
